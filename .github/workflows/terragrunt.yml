@@ -15,7 +15,7 @@ jobs:
     environment:
       name: ${{ matrix.name }}
     container:
-      image: alpine/terragrunt:1.1.6
+      image: alpine:latest
     strategy:
       matrix: #["cats/test", "cats/prod"]
         include:
