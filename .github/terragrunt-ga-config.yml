@@ -1,0 +1,6 @@
+environments:
+  workdirs:
+  - dogs-ua/test
+  - dogs/test
+  - cats/test
+  - cats/prod
