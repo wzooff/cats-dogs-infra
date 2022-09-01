@@ -1,4 +1,5 @@
 environments:
+  # workdirs should be related to environ
   workdirs:
   - dogs-ua/test
   - dogs/test

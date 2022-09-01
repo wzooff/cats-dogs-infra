@@ -1,0 +1,45 @@
+name: Plan All Environments
+on:
+  push:
+    branches:
+      - $default-branch
+  pull_request:
+    branches:
+      - $default-branch
+  workflow_dispatch:
+
+jobs:
+  terragrunt:
+    name: Terragrunt
+    runs-on: ubuntu-latest
+    container:
+      image: alpine/terragrunt:1.1.6
+    strategy:
+      matrix: #["cats/test", "cats/prod"]
+        include:
+          - client: cats
+            environments:
+              - test
+              - prod
+          - client: dogs
+            environments:
+              - test
+          - client: dogs-ua
+            environments:
+              - test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Plan
+        working-directory: format('{0}-{1}', ${{ matrix.client }}, ${{ matrix.environments }})
+        run: |
+          pwd
+
+      # - name: Apply
+      #   environment:
+      #     name: ${{ matrix }}
+      #   if: github.ref == 'refs/heads/$default-branch' && github.event_name == 'push'
+      #   working-directory: ${{ matrix }}
+      #   run: terragrunt run-all apply
