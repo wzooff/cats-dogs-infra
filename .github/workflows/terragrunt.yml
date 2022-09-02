@@ -1,44 +1,47 @@
-name: Plan All Environments
+name: cats-test
 on:
   push:
-    branches:
-      - $default-branch
-  pull_request:
-    branches:
-      - $default-branch
+    paths:
+      - 'cats/test/*'
   workflow_dispatch:
+      paths:
+      - 'cats/test/*'
+
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
-  terragrunt:
-    name: Terragrunt
+  plan:
+    name: plan
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ matrix.name }}
     container:
       image: alpine:latest
-    strategy:
-      matrix: #["cats/test", "cats/prod"]
-        include:
-          - name: cats-test
-            workdir: cats/test
-          - name: cats-prod
-            workdir: cats/prod
-          - name: dogs-test
-            workdir: dogs/test
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Plan
-        # working-directory: ${{ matrix.workdir }})
         run: |
-          ls
-          cd ${{ matrix.workdir}}
+          cd cats/test
           pwd
+          echo "plan"
+
+  apply:
+    name: apply
+    runs-on: ubuntu-latest
+    environment:
+      name: cats-test
+    container:
+      image: alpine:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Apply
-        if: github.ref == 'refs/heads/$default-branch' && github.event_name == 'push'
-        working-directory: ${{ matrix.workdir}}
         run: |
+          cd cats/test
           pwd
           echo "apply"
