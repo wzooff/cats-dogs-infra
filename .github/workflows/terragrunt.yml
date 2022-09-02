@@ -33,6 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: cats-test
+    needs: [plan]
     container:
       image: alpine:latest
 
