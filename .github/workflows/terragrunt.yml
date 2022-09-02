@@ -4,8 +4,6 @@ on:
     paths:
       - 'cats/test/*'
   workflow_dispatch:
-      paths:
-      - 'cats/test/*'
 
 concurrency: 
   group: ${{ github.workflow }}
