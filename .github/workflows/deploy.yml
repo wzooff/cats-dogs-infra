@@ -1,0 +1,36 @@
+name: Deploy Component to Environment
+run-name: Deploy ${{ inputs.component }} to ${{ inputs.environment }}
+
+on:
+  # https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: environment
+        type: environment
+        required: true 
+      namespace:
+        required: true
+        default: default
+      component:
+        required: true
+        type: choice
+        default: foo
+        options:
+        - foo
+        - bar
+jobs:
+  trigger:
+    name: Run Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: {{ inputs.environment }}
+    steps:
+      - name: detect variables
+        run: echo hello
+        # branch name -d
+        # client -i
+        # environment -e
+        # github_deployment
+      - name: trigger circleci
+        run: env
