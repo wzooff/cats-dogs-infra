@@ -6,12 +6,54 @@
 version: 2
 updates:
   - package-ecosystem: "terraform" # See documentation for possible values
-    directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
     registries:
       - terraform-aws-modules
-      
+    directory: "/dogs/test/cluster/"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    schedule:
+      interval: "daily"
+    registries:
+      - terraform-aws-modules
+    directory: "/dogs/test/storage/s3/"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    schedule:
+      interval: "daily"
+    registries:
+      - terraform-aws-modules
+    directory: "/dogs-ua/test/cluster/"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    schedule:
+      interval: "daily"
+    registries:
+      - terraform-aws-modules
+    directory: "/dogs-ua/test/storage/s3/"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    schedule:
+      interval: "daily"
+    registries:
+      - terraform-aws-modules
+    directory: "/cats/prod/cluster/"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    schedule:
+      interval: "daily"
+    registries:
+      - terraform-aws-modules
+    directory: "/cats/prod/storage/s3/"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    schedule:
+      interval: "daily"
+    registries:
+      - terraform-aws-modules
+    directory: "/cats/test/cluster/"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    schedule:
+      interval: "daily"
+    registries:
+      - terraform-aws-modules
+    directory: "/cats/test/storage/s3/"
+     
 registries:
   terraform-aws-modules: # Define access for a private registry
     type: git
