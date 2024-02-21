@@ -3,5 +3,5 @@ terraform {
 }
 
 inputs = {
-    name = "bar"
+    name = "barr"
 }
