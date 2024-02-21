@@ -1,0 +1,9 @@
+repos:
+  - repo: https://github.com/wzooff/pre-commit-terraform
+    rev: 582d87b3681d4240edff71f633757c0757bc2382
+    hooks:
+      - id: terragrunt_providers_lock
+        args:
+          - --args=-platform=darwin_arm64
+          - --args=-platform=darwin_amd64
+          - --args=-platform=linux_amd64
