@@ -1,3 +1,7 @@
+terraform {
+  source = "../../../modules/dummy"
+}
+
 inputs = {
-    foo = "bar"
+    name = "barr"
 }
